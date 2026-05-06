@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Taskly Zone</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* ===== GLOBAL ===== */
+body{
+  font-family:'Inter',sans-serif;
+  margin:0;
+  background:linear-gradient(135deg,#eef2ff,#f0fdfa);
+  color:#1e293b;
+  overflow-x:hidden;
+}
+
+/* ===== PARTICLES ===== */
+.particle{
+  position:fixed;
+  width:7px;
+  height:7px;
+  background:#6366f1;
+  border-radius:50%;
+  opacity:0.25;
+  animation: float 12s linear infinite;
+}
+
+@keyframes float{
+  from{transform:translateY(100vh);}
+  to{transform:translateY(-10vh);}
+}
+
+/* ===== BRAND ===== */
+.brand{
+  display:flex;
+  align-items:center;
+  padding:12px 15px;
+}
+
+.brand span{
+  font-size:22px;
+  font-weight:700;
+  background:linear-gradient(135deg,#6366f1,#22d3ee);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+/* ===== HERO ===== */
+.hero-box{
+  margin:10px;
+  padding:20px;
+  border-radius:20px;
+  background:rgba(255,255,255,0.6);
+  backdrop-filter:blur(15px);
+  box-shadow:0 8px 25px rgba(0,0,0,0.05);
+}
+
+.hero h1{
+  font-size:28px;
+  margin:10px 0;
+}
+
+.hero p{
+  opacity:0.8;
+}
+
+.btn{
+  margin-top:10px;
+  padding:10px 18px;
+  border:none;
+  border-radius:20px;
+  background:linear-gradient(135deg,#6366f1,#22d3ee);
+  color:white;
+  cursor:pointer;
+}
+
+/* ===== SECTION ===== */
+.section{padding:15px;}
+h2{color:#0f172a;}
+
+/* ===== GRID ===== */
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+/* ===== CARD ===== */
+.card{
+  padding:15px;
+  border-radius:15px;
+  background:rgba(255,255,255,0.6);
+  backdrop-filter:blur(12px);
+  box-shadow:0 5px 20px rgba(0,0,0,0.05);
+  transition:0.25s;
+  cursor:pointer;
+}
+
+.card:hover{
+  transform:translateY(-4px) scale(1.02);
+}
+
+/* ===== ICON ===== */
+.icon{
+  width:18px;
+  height:18px;
+  margin-right:6px;
+  vertical-align:middle;
+  stroke:#6366f1;
+}
+
+/* ===== PROCESS ===== */
+.process-box{
+  max-height:0;
+  overflow:hidden;
+  transition:0.3s ease;
+  font-size:13px;
+}
+
+.card.active .process-box{
+  max-height:100px;
+  margin-top:8px;
+}
+
+/* ===== VIDEO ===== */
+.video-card{
+  margin:15px;
+  padding:10px;
+  border-radius:15px;
+  background:rgba(224,242,254,0.6);
+  backdrop-filter:blur(10px);
+}
+
+iframe{
+  width:100%;
+  height:200px;
+  border-radius:10px;
+  border:none;
+}
+
+/* ===== CONTACT ===== */
+.contact{
+  margin:15px;
+  padding:15px;
+  border-radius:15px;
+  background:rgba(255,255,255,0.7);
+}
+
+input,textarea{
+  width:100%;
+  padding:8px;
+  margin-bottom:8px;
+  border-radius:8px;
+  border:none;
+  background:#f1f5f9;
+}
+
+/* ===== FOOTER ===== */
+.footer{
+  text-align:center;
+  margin-top:20px;
+}
+
+.footer-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:8px 12px;
+  margin:5px;
+  border-radius:20px;
+  background:rgba(255,255,255,0.7);
+  text-decoration:none;
+  color:#1e293b;
+}
+
+.footer-btn svg{
+  width:16px;
+  height:16px;
+  stroke:#6366f1;
+}
+
+/* ===== MOBILE ===== */
+@media(max-width:768px){
+  .grid{grid-template-columns:1fr;}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- PARTICLES -->
+<script>
+for(let i=0;i<25;i++){
+  let p=document.createElement("div");
+  p.className="particle";
+  p.style.left=Math.random()*100+"%";
+  p.style.animationDuration=(10+Math.random()*4)+"s";
+  document.body.appendChild(p);
+}
+</script>
+
+<!-- BRAND -->
+<div class="brand">
+  <span>TASKLY ZONE</span>
+</div>
+
+<!-- HERO -->
+<div class="hero-box">
+  <div class="hero">
+    <h1>Unlock Your Online Earning Potential</h1>
+    <p>Complete guided tasks, submit proof, and build a consistent income stream with ease.</p>
+    <button class="btn" onclick="scrollToWork()">Explore Tasks</button>
+  </div>
+</div>
+
+<!-- WORK -->
+<div class="section" id="work">
+  <h2>Available Tasks</h2>
+
+  <div class="grid">
+
+    <div class="card" onclick="toggleProcess(this)">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M12 17l-5 3 1-5-4-4 5-.5L12 6l3 4.5 5 .5-4 4 1 5-5-3z"/></svg>
+      App Review Task
+      <div class="process-box">
+        Download → Use → 5★ → Review → Screenshot → Submit
+      </div>
+    </div>
+
+    <div class="card" onclick="toggleProcess(this)">
+      <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>
+      Social Media Task
+      <div class="process-box">
+        Follow, like and submit screenshot proof
+      </div>
+    </div>
+
+    <div class="card" onclick="toggleProcess(this)">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M12 21s-6-5-6-10a6 6 0 1112 0c0 5-6 10-6 10z"/></svg>
+      Google Map Review
+      <div class="process-box">
+        Search → Rate → Review → Screenshot
+      </div>
+    </div>
+
+    <div class="card" onclick="toggleProcess(this)">
+      <svg class="icon" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16"/></svg>
+      Other Tasks
+      <div class="process-box">
+        Simple instructions provided
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- VIDEO (FIXED) -->
+<div class="video-card">
+  <h2>Tutorial Guide</h2>
+  <iframe 
+    src="https://www.youtube.com/embed/xPQ4bwRzOak"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen>
+  </iframe>
+</div>
+
+<!-- CONTACT -->
+<div class="contact">
+  <h2>Contact Us</h2>
+  <input id="name" placeholder="Name">
+  <textarea id="message" placeholder="Message"></textarea>
+  <button class="btn" onclick="sendToTelegram()">Send</button>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <a class="footer-btn" href="https://t.me/Taskly_ai" target="_blank">Telegram</a>
+
+  <a class="footer-btn" href="https://www.instagram.com/taskly_zone/" target="_blank">Instagram</a>
+
+  <a class="footer-btn" href="mailto:nestreview88@gmail.com">Email</a>
+</div>
+
+<script>
+function scrollToWork(){
+  document.getElementById("work").scrollIntoView({behavior:"smooth"});
+}
+
+function toggleProcess(card){
+  card.classList.toggle("active");
+}
+
+function sendToTelegram(){
+  let name = document.getElementById("name").value;
+  let message = document.getElementById("message").value;
+
+  let text = `New Contact Request\nName: ${name}\nMessage: ${message}`;
+
+  let url = "https://t.me/Taskly_ai?text=" + encodeURIComponent(text);
+
+  window.open(url, "_blank");
+}
+</script>
+
+</body>
+</html>
